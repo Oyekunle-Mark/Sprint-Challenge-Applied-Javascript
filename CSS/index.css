@@ -147,11 +147,13 @@ body {
 .header .date {
   margin-left: 25px;
   flex: 1;
+  color: #12127a;
 }
 .header .temp {
   text-align: right;
   margin-right: 25px;
   flex: 1;
+  color: #12127a;
 }
 .tabs {
   border-bottom: 1px solid lightgrey;
@@ -250,6 +252,7 @@ body {
   font-size: 12px;
   letter-spacing: 1px;
   font-weight: bold;
+  color: #12127a;
 }
 .carousel {
   width: 100%;
@@ -306,6 +309,5 @@ body {
   transition: 1s;
 }
 .carousel .show {
-  display: block;
   right: 0;
 }
