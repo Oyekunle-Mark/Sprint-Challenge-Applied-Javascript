@@ -27,7 +27,7 @@ const imgArray = Array.from(images).map(img => {
 
 // add click event handler to the right button
 rightButton.addEventListener("click", () => {
-  if (currentImageIndex === 4) currentImageIndex = 0;
+  if (currentImageIndex === imgArray.length) currentImageIndex = 0;
 
   currentImageIndex++;
   imgArray[currentImageIndex - 1].showImage();
@@ -36,7 +36,7 @@ rightButton.addEventListener("click", () => {
 // add click event handler to the left button
 leftButton.addEventListener("click", () => {
   if (currentImageIndex === 1) {
-    currentImageIndex = 4;
+    currentImageIndex = imgArray.length;
     imgArray[currentImageIndex - 1].showImage();
     return;
   }
