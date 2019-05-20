@@ -1,6 +1,32 @@
 class Carousel {
   constructor(imgElement) {
     this.imgElement = imgElement;
+    this.leftButton = document.querySelector(".left-button");
+    this.rightButton = document.querySelector(".right-button");
+
+    // represents the currently displayed image
+    this.currentImageIndex = 1;
+
+    // add click event handler to the right button
+    this.rightButton.addEventListener("click", () => {
+      if (this.currentImageIndex === imgArray.length)
+        this.currentImageIndex = 0;
+
+      this.currentImageIndex++;
+      imgArray[this.currentImageIndex - 1].showImage();
+    });
+
+    // add click event handler to the left button
+    this.leftButton.addEventListener("click", () => {
+      if (this.currentImageIndex === 1) {
+        this.currentImageIndex = imgArray.length;
+        imgArray[this.currentImageIndex - 1].showImage();
+        return;
+      }
+
+      this.currentImageIndex--;
+      imgArray[this.currentImageIndex - 1].showImage();
+    });
   }
 
   showImage() {
@@ -9,38 +35,12 @@ class Carousel {
   }
 }
 
+// get the carousel, images and buttons
+const carousel = document.querySelector(".carousel");
+
 // display the first image
 document.querySelector("img").classList.add("show");
 
-// get the carousel, images and buttons
-const carousel = document.querySelector(".carousel");
-const leftButton = carousel.querySelector(".left-button");
-const rightButton = carousel.querySelector(".right-button");
 const images = carousel.querySelectorAll("img");
 
-// represents the currently displayed image
-let currentImageIndex = 1;
-
-const imgArray = Array.from(images).map(img => {
-  return new Carousel(img);
-});
-
-// add click event handler to the right button
-rightButton.addEventListener("click", () => {
-  if (currentImageIndex === imgArray.length) currentImageIndex = 0;
-
-  currentImageIndex++;
-  imgArray[currentImageIndex - 1].showImage();
-});
-
-// add click event handler to the left button
-leftButton.addEventListener("click", () => {
-  if (currentImageIndex === 1) {
-    currentImageIndex = imgArray.length;
-    imgArray[currentImageIndex - 1].showImage();
-    return;
-  }
-
-  currentImageIndex--;
-  imgArray[currentImageIndex - 1].showImage();
-});
+const imgArray = Array.from(images).map(img => new Carousel(img));
